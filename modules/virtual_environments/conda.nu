@@ -52,12 +52,12 @@ export def-env activate [
 
         let new_prompt = if (has-env 'PROMPT_COMMAND') {
             if 'closure' in ($old_prompt_command | describe) {
-                {|| $'($virtual_prompt)(do $old_prompt_command)' }
+                {|| $'(do $old_prompt_command)' }
             } else {
-                {|| $'($virtual_prompt)($old_prompt_command)' }
+                {|| $'($old_prompt_command)' }
             }
         } else {
-            {|| $'($virtual_prompt)' }
+            {|| $'' }
         }
 
         $new_env | merge {
